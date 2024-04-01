@@ -5,5 +5,6 @@ idna==3.6
 Kivy==2.3.0
 Kivy-Garden==0.1.5
 Pygments==2.17.2
+pyperclip==1.8.2
 requests==2.31.0
 urllib3==2.2.1
