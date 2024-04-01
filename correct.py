@@ -1,11 +1,81 @@
 import pyperclip
 
 class Correct:
+    def __init__(self):
+        self.persian_to_english = {
+  "ض": "q",
+  "ص": "w",
+  "ث": "e",
+  "ق": "r",
+  #"ژ": "Zh",
+  "گ": r"'",
+  "چ": "]",
+  #"پ": "P",
+  "ی": "d",
+  "ک": r";",
+  "ت": "j",
+  "ب": "f",
+  "ن": "k",
+  "م": "l",
+  "و": r",",
+  "ه": "i",
+  "خ": "o",
+  "د": "n",
+  "ز": "c",
+  "ر": "v",
+  "ا": "h",
+  "ع": "u",
+  "غ": "y",
+  "ف": "t",
+  "ل": "g",
+  "ج":"[",
+  "ح":"p",
+  "ذ":"b",
+  "س":"s",
+  "ش":"a",
+  "ط":"x",
+  "ظ":"z",
     
+}
+        self.english_to_persian = {
+  "q": "ض",
+  "w": "ص",
+  "e": "ث",
+  "r": "ق",
+  # "Zh": "ژ",  # Uncomment if you have "Zh" in the original dict
+  "g'": "گ",  # Assuming ' is the apostrophe character
+  # "P": "پ",  # Uncomment if you have "P" in the original dict
+  "d": "ی",
+  ";": "ک",
+  "j": "ت",
+  "f": "ب",
+  "k": "ن",
+  "l": "م",
+  ",": "و",
+  "i": "ه",
+  "o": "خ",
+  "n": "د",
+  "c": "ز",
+  "v": "ر",
+  "h": "ا",
+  "u": "ع",
+  "y": "غ",
+  "t": "ف",
+  "g": "ل",
+  "[": "ج",
+  "p": "ح",
+  "b": "ذ",
+  "s": "س",
+  "a": "ش",
+  "x": "ط",
+  "z": "ظ",
+}
+
+
     def main(self):
         initial_text = self.get_from_clipboard()
-        lang = self.check_lang(initial_text)
-
+        lang = self.check_lang(text=initial_text)
+        self.correct(lang=lang)
 
     def check_lang(self,text):
         my_tool = check_lang()
@@ -13,17 +83,18 @@ class Correct:
 
         
 
-    def correct(self):
-        pass
+    def correct(self,lang):
+        if lang == "persian":
+            pass
+        elif lang == "english":
+            pass
 
     def get_from_clipboard(self):
         clipboard = pyperclip.paste()
         return clipboard
 
-    def send_to_clipboard(self):
-        pass
-
-
+    def send_to_clipboard(self,corrected_text):
+        pyperclip.copy(corrected_text)
 
 
 
