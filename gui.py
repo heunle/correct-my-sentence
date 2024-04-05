@@ -1,9 +1,8 @@
 from kivy.app import App
 from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
-import kivy
 from kivy.config import Config
-
+from correct import Correct
 
 
 
@@ -28,8 +27,8 @@ class MyApp(App):
         return layout
 
     def on_button_press(self, instance):
-        # This function is called when the button is pressed
-        print("Button clicked!")
+        core = Correct()
+        core.main()
 
 def main():
     Config.set('graphics', 'width', '200')

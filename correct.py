@@ -70,12 +70,14 @@ class Correct:
   "x": "ط",
   "z": "ظ",
 }
+        #self.text = None
 
 
     def main(self):
         initial_text = self.get_from_clipboard()
-        lang = self.check_lang(text=initial_text)
-        self.correct(lang=lang)
+        self.text = initial_text
+        #lang = self.check_lang(text=initial_text)
+        self.send_to_clipboard(self.correct(lang="persian"))
 
     def check_lang(self,text):
         my_tool = check_lang()
@@ -84,8 +86,22 @@ class Correct:
         
 
     def correct(self,lang):
+        
+        text = list(self.text)
+        
         if lang == "persian":
-            pass
+            for i in range(len(text)):
+                if text[i] == " ":
+                    continue
+                text[i] = self.persian_to_english[text[i]]
+        
+            answer = ""
+            for i in text:
+                answer += i
+
+            return answer
+        
+        
         elif lang == "english":
             pass
 
@@ -109,12 +125,24 @@ class check_lang:
         Returns:
             True if the text is in Persian, False otherwise.
         """
-        persian_chars = "\u0600-\u06FF\u0750-\u077F\uFB8A-\uFB8E\uFB8F-\uFBAD\uFBD3-\uFD3D\uFD50-\uFDFC\uFBE8-\uFBEF"
-        
+        persian_chars = "\u0600-\u06FF\u0750-\u077F"  # Basic Persian alphabet
+        english_chars = "\0-9a-zA-Z"  # Letters and numbers
+
+        persian_count = 0
+        english_count = 0
         for char in text:
             if char in persian_chars:
-                return True
-        return False
+                persian_count += 1
+            elif char in english_chars:
+                english_count += 1
+
+        if persian_count > english_count:
+            return "persian"
+        elif english_count > persian_count:
+            return "english"
+        else:
+            return "other"
+    
         
         
     
@@ -156,3 +184,5 @@ class check_lang:
             return None
 
     
+
+
